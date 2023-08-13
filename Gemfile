@@ -13,6 +13,9 @@ gem 'pg', '~> 1.1'
 # Linters
 gem 'rubocop', require: false
 
+# CRM's Data Syncs
+gem 'hubspot-api-client'
+
 # Defaults
 gem 'bootsnap', require: false
 gem 'puma', '~> 5.0'
