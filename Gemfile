@@ -9,8 +9,9 @@ gem 'rails', '~> 7.0.6'
 
 # Databases
 gem 'pg', '~> 1.1'
+gem 'redis'
 
-# Linters
+# Linterss
 gem 'rubocop', require: false
 
 # CRM's Data Syncs
