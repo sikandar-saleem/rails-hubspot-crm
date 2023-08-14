@@ -16,10 +16,14 @@ gem 'rubocop', require: false
 # CRM's Data Syncs
 gem 'hubspot-api-client'
 
+# Others
+gem 'active_model_serializers'
+
 # Defaults
 gem 'bootsnap', require: false
 gem 'puma', '~> 5.0'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+
 
 group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
