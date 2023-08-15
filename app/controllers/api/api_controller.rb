@@ -1,24 +1,34 @@
 # frozen_string_literal: true
 
 module Api
-  # ApiContoller
+  # ApiController
   class ApiController < ApplicationController
-    def render_success_response(json_response, message = 'Fetched successfully.', response_code = 200)
+    def render_success_response(json_response, message = 'Success.', response_code = :ok)
       render json: { data: json_response, status_code: response_code, message: }
     end
 
-    def render_error_response(json_response, response_code = :unprocessable_entity, errors = nil)
-      if errors.present?
-        errors = errors.full_messages if errors.is_a?(ActiveModel::Errors)
-        json_response = json_response.merge(errors:)
-      end
-
-      render json: json_response.merge(success: false), status: response_code
+    def render_error_response(errors = ['Something went wrong.'], status_code = :unprocessable_entity)
+      error_messages = parse_errors(errors)
+      render json: { errors: error_messages, status_code: }
     end
 
     def render_not_found(errors = ['Requested resource not found.'])
-      errors = [errors] if errors.is_a? String
-      render_error_response({}, :not_found, errors)
+      error_messages = parse_errors(errors)
+      render_error_response(error_messages, :not_found)
+    end
+
+    private
+
+    def parse_errors(errors)
+      return [] unless errors.present??
+
+      if errors.is_a?(ActiveModel::Errors)
+        errors.full_messages
+      elsif errors.is_a?(String)
+        [errors]
+      else
+        errors
+      end
     end
   end
 end
