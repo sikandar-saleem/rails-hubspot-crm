@@ -20,7 +20,7 @@ module Api
     private
 
     def parse_errors(errors)
-      return [] unless errors.present??
+      return [] unless errors.present?
 
       if errors.is_a?(ActiveModel::Errors)
         errors.full_messages
