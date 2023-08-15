@@ -3,8 +3,8 @@
 module Api
   # ApiContoller
   class ApiController < ApplicationController
-    def render_success_response(json_response,  response_code = :ok)
-      render json: json_response.merge(success: true), status: response_code
+    def render_success_response(json_response, message = 'Fetched successfully.', response_code = 200)
+      render json: { data: json_response, status_code: response_code, message: }
     end
 
     def render_error_response(json_response, response_code = :unprocessable_entity, errors = nil)
